@@ -20,7 +20,8 @@ def create():
     global i
     items[i] = {
         'text': request.form['text'], 
-        'votes': 0
+        'votes': 0,
+        'owner': request.remote_addr
     }
     id = i
     i += 1
@@ -28,6 +29,8 @@ def create():
 
 @app.route('/delete/<int:id>')
 def delete(id):
+    if items[id]['owner'] != request.remote_addr:
+        return "You can only delete your own posts."
     if id in items:
         del items[id]
     return redirect('/')

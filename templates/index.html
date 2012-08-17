@@ -54,7 +54,9 @@ a {
         {% endif %}
         <span class="votes">{{ items[id].votes }}</span>
         <span class="list-item" id="{{ id }}">{{ items[id].text }}</span>
+        {% if items[id].owner == request.remote_addr %}
         <a href="/delete/{{ id }}" class="delete">[del]</a>
+        {% endif %}
         </li>
         {% endfor %}
         {% else %}
@@ -65,9 +67,9 @@ a {
     Add another topic:
     <form action="/create/" method="POST">
         <input type="text"/ name="text" class="text-input">
-        <!-- <input type="submit"/ value="Add"> -->
     </form>
     </div>
 </body>
-<!-- Made by Andrej T. / andrejtrajchevski@gmail.com-->
+<!-- Made by Andrej T. / andrejtrajchevski@gmail.com -->
+<!-- Repo: https://github.com/whoeverest/NSND-Upvoting -->
 </html>
