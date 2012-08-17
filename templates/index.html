@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>NSND Upvoting</title>
+<style>
+body {
+    color: #444;
+}
+a {
+    text-decoration: none;
+    color: #555;
+}
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 500px;
+
+    border: 1px #CCC solid;
+}
+.list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.item {
+    padding-bottom: 5px;
+}
+.delete {
+    color: #CCC;
+    padding-left: 10px;
+}
+.votes {
+    /*padding-left: 10px;*/
+    padding-right: 10px;
+}
+.text-input {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+    <div class="main">
+    <h1>NSND Upvoting</h1>
+    <ul class="list">
+        {% if items:%}
+        <h2>Topics:</h2>
+        {% for id in items %}
+        <li class="item" id="{{ id }}">
+        {% if id not in users[user_id] %}
+        <a href="/vote/{{ id }}/up" class="vote up">&#9650;</a>
+        {% else %}
+        <a href="/vote/{{ id }}/down" class="vote down">&#9660;</a>
+        {% endif %}
+        <span class="votes">{{ items[id].votes }}</span>
+        <span class="list-item" id="{{ id }}">{{ items[id].text }}</span>
+        <a href="/delete/{{ id }}" class="delete">[del]</a>
+        </li>
+        {% endfor %}
+        {% else %}
+            Add some topics.
+        {% endif %}
+    </ul>
+    <br/>
+    Add another topic:
+    <form action="/create/" method="POST">
+        <input type="text"/ name="text" class="text-input">
+        <!-- <input type="submit"/ value="Add"> -->
+    </form>
+    </div>
+</body>
+<!-- Made by Andrej T. / andrejtrajchevski@gmail.com-->
+</html>
