@@ -49,6 +49,8 @@ def upvote(id, type):
         items[id]['votes'] += 1
         users[user_id].append(id)
     elif type == 'down':
+        if id not in users[user_id]:
+            return "You can't downvote this items."
         items[id]['votes'] -= 1
         users[user_id].remove(id)
     return redirect('/')
