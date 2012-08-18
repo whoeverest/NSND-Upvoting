@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template
 from collections import defaultdict
+import pickle
 
 app = Flask(__name__)
 app.debug = True
@@ -33,6 +34,8 @@ def delete(id):
         return "You can only delete your own posts."
     if id in items:
         del items[id]
+    else:
+        return 'Unknown ID.'
     return redirect('/')
 
 @app.route('/vote/<int:id>/<type>')

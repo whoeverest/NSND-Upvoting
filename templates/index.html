@@ -3,20 +3,23 @@
 <title>NSND Upvoting</title>
 <style>
 body {
-    color: #444;
+    color: #445;
+    text-align: center;
+    font-family: sans-serif;
 }
 a {
     text-decoration: none;
-    color: #555;
+    color: #556;
 }
 .main {
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
     padding-left: 20px;
     padding-right: 20px;
     width: 500px;
 
-    border: 1px #CCC solid;
+    border: 1px #CCD solid;
 }
 .list {
     margin: 0;
@@ -27,7 +30,7 @@ a {
     padding-bottom: 5px;
 }
 .delete {
-    color: #CCC;
+    color: #BBC;
     padding-left: 10px;
 }
 .votes {
@@ -54,17 +57,17 @@ a {
         {% endif %}
         <span class="votes">{{ items[id].votes }}</span>
         <span class="list-item" id="{{ id }}">{{ items[id].text }}</span>
-        {% if items[id].owner == request.remote_addr %}
+        {% if items[id].owner == user_id %}
         <a href="/delete/{{ id }}" class="delete">[del]</a>
         {% endif %}
         </li>
         {% endfor %}
         {% else %}
-            Add some topics.
+            It looks like the list is empty. Add some topics?
         {% endif %}
     </ul>
     <br/>
-    Add another topic:
+    Add a topic:
     <form action="/create/" method="POST">
         <input type="text"/ name="text" class="text-input">
     </form>
